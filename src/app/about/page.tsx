@@ -9,23 +9,7 @@ import dynamic from 'next/dynamic';
 const WhatsAppPopup = dynamic(() => import('../components/WhatsAppPopup'), { ssr: false });
 
 export default function About() {
-  const mapRef = useRef<HTMLDivElement | null>(null); // Specify the type of the ref
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && mapRef.current) {
-      if (!mapRef.current.hasOwnProperty('_leaflet_id')) {
-        const map = L.map(mapRef.current).setView([32.309, -9.237], 15);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        L.marker([32.309, -9.237]).addTo(map)
-          .bindPopup('MobileMasters Location')
-          .openPopup();
-      }
-    }
-  }, []);
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
@@ -53,7 +37,7 @@ export default function About() {
           <p className="text-gray-600 mb-4">
             We&apos;d love to see you in person! Visit our store located in the heart of Safi.
           </p>
-          <div id="map" ref={mapRef} className="h-96 rounded-lg overflow-hidden mb-4 shadow-md"></div>
+         
           <p className="mt-4 text-gray-600">
             <strong>Address:</strong> 7QJC+7PF, Safi 20160, Morocco<br />
             <strong>Phone:</strong> +(212) 644 332 797<br />

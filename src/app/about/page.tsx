@@ -24,7 +24,7 @@ export default function About() {
           .openPopup();
       }
     }
-  }, [mapRef]); // Add mapRef as a dependency
+  }, []); // Ensure this runs only once after the component mounts
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">

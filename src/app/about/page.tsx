@@ -4,13 +4,14 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import L from 'leaflet'; // Import Leaflet at the top
 import WhatsAppPopup from '../components/WhatsAppPopup'; // Import the WhatsAppPopup component
+
 export default function About() {
   const mapRef = useRef<HTMLDivElement | null>(null); // Specify the type of the ref
 
   useEffect(() => {
     // Check if the code is running in the browser
     if (typeof window !== 'undefined' && mapRef.current) {
-      // Check if the map has already been initialized
+      // Initialize the map only if it hasn't been initialized yet
       if (!mapRef.current.hasOwnProperty('_leaflet_id')) {
         const map = L.map(mapRef.current).setView([32.309, -9.237], 15);
 
@@ -23,7 +24,7 @@ export default function About() {
           .openPopup();
       }
     }
-  }, []);
+  }, [mapRef]); // Add mapRef as a dependency
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">

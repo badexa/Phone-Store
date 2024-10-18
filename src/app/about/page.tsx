@@ -12,9 +12,7 @@ export default function About() {
   const mapRef = useRef<HTMLDivElement | null>(null); // Specify the type of the ref
 
   useEffect(() => {
-    // Check if the code is running in the browser
     if (typeof window !== 'undefined' && mapRef.current) {
-      // Initialize the map only if it hasn't been initialized yet
       if (!mapRef.current.hasOwnProperty('_leaflet_id')) {
         const map = L.map(mapRef.current).setView([32.309, -9.237], 15);
 

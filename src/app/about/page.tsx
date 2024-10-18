@@ -1,67 +1,34 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
+//hone-store/src/app/components/WhatsAppPopup.tsx
+import React from 'react';
 import Image from 'next/image';
-import L from 'leaflet'; // Import Leaflet at the top
-import WhatsAppPopup from '../components/WhatsAppPopup'; // Import the WhatsAppPopup component
 
-export default function About() {
-  const mapRef = useRef<HTMLDivElement | null>(null); // Specify the type of the ref
-
-  useEffect(() => {
-    // Check if the code is running in the browser
-    if (typeof window !== 'undefined' && mapRef.current) {
-      // Initialize the map only if it hasn't been initialized yet
-      if (!mapRef.current.hasOwnProperty('_leaflet_id')) {
-        const map = L.map(mapRef.current).setView([32.309, -9.237], 15);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        L.marker([32.309, -9.237]).addTo(map)
-          .bindPopup('MobileMasters Location')
-          .openPopup();
-      }
-    }
-  }, []); // Ensure this runs only once after the component mounts
+const WhatsAppPopup: React.FC = () => {
+  const whatsappNumber = '+212644332797'; // Define WhatsApp number
 
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
-      <div className="relative h-64 sm:h-80 md:h-96">
-        <Image
-          src="/images/h.jpg"
-          alt="Phone Store Team"
-          layout="fill"
-          objectFit="cover"
-          className="object-center opacity-80"
-        />
-      </div>
-      
-      <main className="p-6 sm:p-10 bg-white shadow-lg rounded-lg mx-4 sm:mx-10 mt-[-40px] z-10">
-        <section className="mb-12">
-          <p className="text-gray-600 font-bold leading-relaxed">
-            Founded with a passion for mobile technology, MobileMasters has been serving the Safi community since our inception. 
-            We pride ourselves on offering the latest smartphones and accessories, coupled with expert advice and 
-            unparalleled customer service.
-          </p>
-        </section>
-        
-        <section>
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Visit Us</h2>
-          <p className="text-gray-600 mb-4">
-            We&apos;d love to see you in person! Visit our store located in the heart of Safi.
-          </p>
-          <div id="map" ref={mapRef} className="h-96 rounded-lg overflow-hidden mb-4 shadow-md"></div>
-          <p className="mt-4 text-gray-600">
-            <strong>Address:</strong> 7QJC+7PF, Safi 20160, Morocco<br />
-            <strong>Phone:</strong> +(212) 644 332 797<br />
-            <strong>Email:</strong> MobileMasters@gmail.com
-          </p>
-        </section>
-      </main>
-      {/* WhatsApp Popup */}
-      <WhatsAppPopup />
-    </div>
+    <a
+      href={`https://wa.me/${whatsappNumber}`} // Use whatsappNumber here
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        position: 'fixed', // Fixed position to stay in view
+        bottom: '20px',    // Distance from the bottom of the viewport
+        right: '20px',     // Distance from the right of the viewport
+        backgroundColor: '#25D366', // WhatsApp color
+        borderRadius: '50%', // Circular shape
+        padding: '10px',    // Padding around the icon
+        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)', // Shadow for depth
+        zIndex: 1000,       // Ensure it appears above other elements
+      }}
+    >
+      <Image
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" // WhatsApp icon
+        alt="WhatsApp"
+        width={50} // Width of the icon
+        height={50} // Height of the icon
+      />
+    </a>
   );
-}
+};
+
+export default WhatsAppPopup;

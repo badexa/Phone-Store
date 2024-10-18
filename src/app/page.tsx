@@ -1,5 +1,4 @@
 import ImageSlider from './components/ImageSlider';
-import Link from 'next/link';
 import WhatsAppPopup from './components/WhatsAppPopup'; // Import the WhatsAppPopup component
 import Image from 'next/image'; // Import Image for the circular image
 

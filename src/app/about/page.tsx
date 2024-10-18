@@ -50,7 +50,7 @@ export default function About() {
         <section>
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Visit Us</h2>
           <p className="text-gray-600 mb-4">
-            We'd love to see you in person! Visit our store located in the heart of Safi.
+          We&apos;d love to see you in person! Visit our store located in the heart of Safi.
           </p>
           <div id="map" ref={mapRef} className="h-96 rounded-lg overflow-hidden mb-4 shadow-md"></div>
           <p className="mt-4 text-gray-600">

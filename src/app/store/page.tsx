@@ -1,4 +1,4 @@
-import Link from 'next/link';
+  import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent, CardMedia, Typography, Button, Grid } from '@mui/material'; // Import Magic UI components
 import WhatsAppPopup from '../components/WhatsAppPopup'; // Import the WhatsAppPopup component

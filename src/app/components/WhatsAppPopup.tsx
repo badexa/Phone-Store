@@ -2,11 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 
 const WhatsAppPopup: React.FC = () => {
-  const whatsappNumber = '15555555555'; // Replace with your WhatsApp number in international format
+  const whatsappNumber = '+212644332797'; // Define WhatsApp number
 
   return (
     <a
-      href={`https://wa.me/${+212644332797}`}
+      href={`https://wa.me/${whatsappNumber}`} // Use whatsappNumber here
       target="_blank"
       rel="noopener noreferrer"
       style={{

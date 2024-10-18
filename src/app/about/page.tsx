@@ -8,6 +8,7 @@ export default function About() {
   const mapRef = useRef<HTMLDivElement | null>(null); // Specify the type of the ref
 
   useEffect(() => {
+    // Check if the code is running in the browser
     if (typeof window !== 'undefined' && mapRef.current) {
       // Check if the map has already been initialized
       if (!mapRef.current.hasOwnProperty('_leaflet_id')) {
@@ -34,14 +35,12 @@ export default function About() {
           objectFit="cover"
           className="object-center opacity-80"
         />
-        
       </div>
       
       <main className="p-6 sm:p-10 bg-white shadow-lg rounded-lg mx-4 sm:mx-10 mt-[-40px] z-10">
         <section className="mb-12">
-          
           <p className="text-gray-600 font-bold leading-relaxed">
-             Founded with a passion for mobile technology, MobileMasters has been serving the Safi community since our inception. 
+            Founded with a passion for mobile technology, MobileMasters has been serving the Safi community since our inception. 
             We pride ourselves on offering the latest smartphones and accessories, coupled with expert advice and 
             unparalleled customer service.
           </p>
@@ -50,7 +49,7 @@ export default function About() {
         <section>
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Visit Us</h2>
           <p className="text-gray-600 mb-4">
-          We&apos;d love to see you in person! Visit our store located in the heart of Safi.
+            We&apos;d love to see you in person! Visit our store located in the heart of Safi.
           </p>
           <div id="map" ref={mapRef} className="h-96 rounded-lg overflow-hidden mb-4 shadow-md"></div>
           <p className="mt-4 text-gray-600">

@@ -1,11 +1,9 @@
-// src/app/product/[id]/page.tsx
 'use client';
 
 import { useParams } from 'next/navigation';
 import Header from '../../components/Header';
 import Link from 'next/link';
 import Image from 'next/image';
-
 
 interface Product {
   id: number;
@@ -378,13 +376,14 @@ export default function ProductDetails() {
             <Image
               src={product.image} // Use the image URL from your product data
               alt={product.name}
-              layout="fill"
-              objectFit="cover"
+              layout="responsive" // Make the image responsive
+              width={500} // Set a width for the image
+              height={300} // Set a height for the image
               className="rounded-lg overflow-hidden"
             />
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black/20 opacity-75 flex items-center justify-center">
-              <h1 className="text-white text-3xl font-bold">{product.name}</h1>
-              <p className="text-white/70 text-lg mt-2">{product.description.slice(0, 80)}...</p>
+              <h1 className="text-white text-2xl md:text-3xl font-bold">{product.name}</h1>
+              <p className="text-white/70 text-sm md:text-lg mt-2">{product.description.slice(0, 80)}...</p>
             </div>
           </div>
 
@@ -395,7 +394,7 @@ export default function ProductDetails() {
               <p className="text-gray-700 text-lg font-bold">${product.price}</p>
             </div>
             <p className="text-gray-600 mb-4">{product.description}</p>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <h3 className="text-gray-700 font-medium mb-2">Specifications</h3>
                 <ul className="list-disc pl-4">
@@ -417,7 +416,7 @@ export default function ProductDetails() {
         </div>
 
         {/* Call to Action */}
-        <div className=" flex justify-center mt-6">
+        <div className="flex justify-center mt-6">
           <button
             onClick={handleWhatsAppOrder}
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center"

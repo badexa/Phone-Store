@@ -1,6 +1,10 @@
+// src/app/store/page.tsx
+'use client'; // Add this line to mark the component as a Client Component
+
+import { useState } from 'react'; // Import useState for managing state
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardContent, CardMedia, Typography, Button, Grid } from '@mui/material'; // Import Material UI components
+import { Card, CardContent, CardMedia, Typography, Button, Grid, TextField } from '@mui/material'; // Import Material UI components
 import WhatsAppPopup from '../components/WhatsAppPopup'; // Import the WhatsAppPopup component
 
 interface Product {
@@ -30,11 +34,34 @@ const products: Product[] = [
 ];
 
 export default function Store() {
+  const [searchQuery, setSearchQuery] = useState(''); // State for search query
+
+  // Filter products based on the search query
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    product.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="p-16"> {/* Padding for the entire container */}
       <div className="container mx-auto mt-12 mb-12"> {/* Added margin-top and margin-bottom */}
+        {/* Search Bar */}
+        <TextField
+          variant="outlined"
+          placeholder="Search products..."
+          fullWidth
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="mb-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          InputProps={{
+            style: {
+              padding: '8px 12px', // Decreased padding for a lower height
+              fontSize: '14px',
+            },
+          }}
+        />
         <Grid container spacing={4}>
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={4}>
               <Card elevation={3} className="hover:shadow-lg transition-shadow duration-300">
                 <CardMedia>

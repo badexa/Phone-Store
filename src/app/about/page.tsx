@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+
 import Image from 'next/image';
-import L from 'leaflet'; // Import Leaflet at the top
+
 import dynamic from 'next/dynamic';
 
 // Dynamically import WhatsAppPopup to ensure it only loads on the client side

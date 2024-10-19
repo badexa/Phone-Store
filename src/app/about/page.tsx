@@ -22,7 +22,7 @@ export default function About() {
       
       <main className="p-6 sm:p-10 bg-white shadow-lg rounded-lg mx-4 sm:mx-10 mt-[-40px] z-10">
         <section className="mb-12">
-          <p className="text-gray-600 font-bold leading-relaxed">
+          <p className="text-xl text-gray-600 font-bold leading-relaxed">
             Founded with a passion for mobile technology, MobileMasters has been serving the Safi community since our inception. 
             We pride ourselves on offering the latest smartphones and accessories, coupled with expert advice and 
             unparalleled customer service.
@@ -31,7 +31,7 @@ export default function About() {
         
         <section>
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Visit Us</h2>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600  mb-4">
             We&apos;d love to see you in person! Visit our store located in the heart of Safi.
           </p>
          

@@ -1,7 +1,8 @@
-  import Link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardContent, CardMedia, Typography, Button, Grid } from '@mui/material'; // Import Magic UI components
+import { Card, CardContent, CardMedia, Typography, Button, Grid } from '@mui/material'; // Import Material UI components
 import WhatsAppPopup from '../components/WhatsAppPopup'; // Import the WhatsAppPopup component
+
 interface Product {
   id: number;
   name: string;
@@ -30,47 +31,45 @@ const products: Product[] = [
 
 export default function Store() {
   return (
-    <div className="container mx-auto p-4">
-      <Typography variant="h4" component="h1" gutterBottom align="center">
-        All Products 
-      </Typography>
-      <Grid container spacing={4}>
-        {products.map((product) => (
-          <Grid item key={product.id} xs={12} sm={6} md={4}>
-            <Card elevation={3} className="hover:shadow-lg transition-shadow duration-300">
-              <CardMedia>
-                <Image
-                  src={product.imageUrl}
-                  alt={product.name}
-                  width={300} // Set a fixed width for consistent layout
-                  height={200} // Set a fixed height for consistent layout
-                  layout="fixed" // Maintain aspect ratio and prevent stretching
-                  priority // Prioritize loading for a better user experience
-                  // Add more image optimization options here
-                />
-              </CardMedia>
-              <CardContent>
-                <Typography variant="h6" component="h2" gutterBottom>
-                  {product.name}
-                </Typography>
-                <Typography variant="body1" color="textSecondary">
-                  ${product.price}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" paragraph>
-                  {product.description}
-                </Typography>
-                <Link href={`/product/${product.id}`} passHref>
-                  <Button variant="contained" color="primary" fullWidth>
-                    View Details
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+    <div className="p-16"> {/* Padding for the entire container */}
+      <div className="container mx-auto mt-12 mb-12"> {/* Added margin-top and margin-bottom */}
+        <Grid container spacing={4}>
+          {products.map((product) => (
+            <Grid item key={product.id} xs={12} sm={6} md={4}>
+              <Card elevation={3} className="hover:shadow-lg transition-shadow duration-300">
+                <CardMedia>
+                  <Image
+                    src={product.imageUrl}
+                    alt={product.name}
+                    width={300} // Set a fixed width for consistent layout
+                    height={200} // Set a fixed height for consistent layout
+                    layout="fixed" // Maintain aspect ratio and prevent stretching
+                    priority // Prioritize loading for a better user experience
+                  />
+                </CardMedia>
+                <CardContent>
+                  <Typography variant="h6" component="h2" gutterBottom>
+                    {product.name}
+                  </Typography>
+                  <Typography variant="body1" color="textSecondary">
+                    ${product.price}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" paragraph>
+                    {product.description}
+                  </Typography>
+                  <Link href={`/product/${product.id}`} passHref>
+                    <Button variant="contained" color="primary" fullWidth>
+                      View Details
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
         {/* WhatsApp Popup */}
         <WhatsAppPopup />
+      </div>
     </div>
   );
 }

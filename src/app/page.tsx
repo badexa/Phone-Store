@@ -18,25 +18,25 @@ export default function Home() {
       <hr className="w-full border-t border-gray-300" />
 
       {/* Discover Section */}
-      <section className="relative flex items-center justify-center w-full py-40 margin-top-50">
-        <div className="flex items-center">
-          <div className="relative">
+      <section className="relative flex flex-col md:flex-row items-center justify-center w-full py-40 margin-top-50">
+        <div className="flex flex-col md:flex-row items-center">
+          <div className="relative mb-6 md:mb-0 md:mr-6">
             <Image
               src="/images/1.jpg"
               alt="Discover"
               width={500}
               height={500}
-              className="rounded-full border-4 object-cover"
+              className="rounded-full border-4 object-cover w-full max-w-xs md:max-w-md" // Responsive width
             />
           </div>
-          <div className="ml-6 text-left">
+          <div className="text-left">
             <h3 className="text-2xl">Discover</h3>
             <br />
-            <p className="text-black-900 text-3xl font-bold">
+            <p className="text-black-900 text-2xl md:text-3xl font-bold">
               Explore Endless Options
             </p>
             <br />
-            <p className="text-gray-600 text-3xl md:text-lg">
+            <p className="text-gray-600 text-lg md:text-xl">
               Welcome to a world of limitless possibilities at<br />
               our phone store, where the journey to finding<br />
               your perfect device is just as exciting as using<br />

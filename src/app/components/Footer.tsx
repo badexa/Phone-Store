@@ -1,16 +1,19 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Box, Container, Typography, TextField, Button, Grid } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
+
+// Import the necessary Font Awesome library styles
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 export default function Footer() {
   return (
-    <Box sx={{ backgroundColor: '#121212', color: 'white', py: 4 }}>
+    <Box sx={{ backgroundColor: '#121212', color: 'white', py: 4, position: 'relative', zIndex: 50 }}>
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           {/* Logo Section */}
           <Grid item xs={12} md={4}>
             <Box display="flex" alignItems="center">
-
               <Typography variant="h5" fontWeight="bold">MobileMasters</Typography>
             </Box>
             <Typography variant="body2" sx={{ mt: 1 }}>
@@ -56,34 +59,15 @@ export default function Footer() {
 
         {/* Social Media Icons */}
         <Box display="flex" justifyContent="center" mt={4}>
-          <Link href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-            <Image
-              src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" // Facebook icon
-              alt="Facebook"
-              width={30}
-              height={30}
-              style={{ margin: '0 8px' }}
-            />
+          <Link href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
+            <FontAwesomeIcon icon={faFacebook} size="2x" style={{ color: '#3b5998' }} /> {/* Facebook Blue */}
           </Link>
-          <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-            <Image
-              src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" // Instagram icon
-              alt="Instagram"
-              width={30}
-              height={30}
-              style={{ margin: '0 8px' }}
-            />
+          <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
+            <FontAwesomeIcon icon={faInstagram} size="2x" style={{ color: '#E1306C' }} /> {/* Instagram Pink */}
           </Link>
-          <Link href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">
-            <Image
-              src="" // TikTok icon
-              alt="TikTok"
-              width={30}
-              height={30}
-              style={{ margin: '0 8px' }}
-            />
+          <Link href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
+            <FontAwesomeIcon icon={faTiktok} size="2x" style={{ color: '#69C9D0' }} /> {/* TikTok Teal */}
           </Link>
-          {/* Add more social media icons as needed */}
         </Box>
 
         {/* Contact Information */}

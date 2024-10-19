@@ -5,22 +5,17 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'upload.wikimedia.org',
+        hostname: 'upload.wikimedia.org', // For Wikipedia images
         port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'via.placeholder.com',
+        hostname: 'via.placeholder.com', // For placeholder images
         port: '',
         pathname: '/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com', // Add Unsplash domain
-        port: '',
-        pathname: '/**',
-      },
+     
       // Add any other domains you need here
     ],
   },

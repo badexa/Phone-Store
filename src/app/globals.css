@@ -21,5 +21,9 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0 auto; /* Center the container */
   padding: 0 1rem; /* Add horizontal padding */
 }
-
+/* Add this at the end of your globals.css file */
+button:hover {
+  background-color: var(--hover-bg, inherit) !important;
+  color: var(--hover-text, inherit) !important;
+}
 /* Add any additional custom styles here */

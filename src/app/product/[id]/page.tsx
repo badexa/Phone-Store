@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import Header from '../../components/Header';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from '@mui/material';
+
 
 interface Product {
   id: number;

@@ -52,13 +52,14 @@ export default function Store() {
           fullWidth
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="mb-8 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="mb-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           InputProps={{
             style: {
-              padding: '8px 12px', // Decreased padding for a lower height
+              padding: '8px 12px',
               fontSize: '14px',
             },
           }}
+          style={{ marginBottom: '40px' }} // Add margin here if needed
         />
         <Grid container spacing={4}>
           {filteredProducts.map((product) => (

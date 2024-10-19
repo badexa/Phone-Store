@@ -2,6 +2,24 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* Custom global styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif; /* Default font family */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
 }
+
+/* Responsive typography */
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0; /* Remove default margin */
+}
+
+/* Utility classes for responsive design */
+.container {
+  max-width: 1200px; /* Set a max width for larger screens */
+  margin: 0 auto; /* Center the container */
+  padding: 0 1rem; /* Add horizontal padding */
+}
+
+/* Add any additional custom styles here */

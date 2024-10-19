@@ -11,7 +11,7 @@ export default function Home() {
 
       {/* Quality Hardware Section */}
       <section className="w-full text-center py-20">
-        <h2 className="text-3xl ">Quality hardware makes all the difference in a
+        <h2 className="text-3xl">Quality hardware makes all the difference in a
           <br />smartphone</h2>
       </section>
 
@@ -26,17 +26,17 @@ export default function Home() {
               alt="Discover"
               width={500}
               height={500}
-              className="rounded-full  border-4 object-cover"
+              className="rounded-full border-4 object-cover"
             />
           </div>
           <div className="ml-6 text-left">
-            <h3 className="text-2xl ">Discover</h3>
+            <h3 className="text-2xl">Discover</h3>
             <br />
             <p className="text-black-900 text-3xl font-bold">
               Explore Endless Options
             </p>
             <br />
-            <p className="text-gray-600 text-3xl  md:text-lg">
+            <p className="text-gray-600 text-3xl md:text-lg">
               Welcome to a world of limitless possibilities at<br />
               our phone store, where the journey to finding<br />
               your perfect device is just as exciting as using<br />

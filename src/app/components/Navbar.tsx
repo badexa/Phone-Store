@@ -1,7 +1,12 @@
+'use client'; // Ensure this is a Client Component
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false); // State for mobile menu
+
   return (
     <div>
       {/* Fixed Contact Section */}
@@ -39,6 +44,16 @@ export default function Navbar() {
               </Link>
             </div>
 
+            {/* Hamburger Menu for Mobile */}
+            <div className="md:hidden">
+              <button onClick={() => setIsOpen(!isOpen)} className="text-gray-900 focus:outline-none">
+                {/* Hamburger Icon */}
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+              </button>
+            </div>
+
             {/* Navigation links on the far right */}
             <div className="hidden md:block">
               <div className="flex items-baseline space-x-12">
@@ -55,6 +70,23 @@ export default function Navbar() {
             </div>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden bg-white shadow-md">
+            <div className="flex flex-col items-center">
+              <Link href="/" className="text-xl text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md font-medium">
+                Home
+              </Link>
+              <Link href="/store" className="text-xl text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md font-medium">
+                Store
+              </Link>
+              <Link href="/about" className="text-xl text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md font-medium">
+                About
+              </Link>
+            </div>
+          </div>
+        )}
       </nav>
     </div>
   );

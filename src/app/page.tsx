@@ -124,15 +124,21 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div className="relative pt-[75%] overflow-hidden group">
+                <motion.div 
+                  className="relative pt-[75%]"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <Image
                     src={product.imageUrl}
                     alt={product.name}
                     fill
-                    className="object-contain transition-transform duration-300 group-hover:scale-110"
+                    className="object-contain"
                   />
-                </div>
+                </motion.div>
                 <div className="p-6 flex-grow flex flex-col justify-between">
                   <div>
                     <h3 className="text-xl font-semibold mb-2">{product.name}</h3>

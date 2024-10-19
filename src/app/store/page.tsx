@@ -15,7 +15,7 @@ export type Product = {
   imageUrl: string; // Changed from 'image' to 'imageUrl'
 };
 
-export const products: Product[] = [
+const products: Product[] = [
   { id: 1, name: 'iPhone 13',  description: 'The latest iPhone with amazing features.', imageUrl: '/images/iphone.jpg' },
   { id: 2, name: 'Samsung Galaxy S21',  description: 'Powerful Android phone with great camera.', imageUrl: '/images/samsung.webp' },
   { id: 3, name: 'Google Pixel 6',  description: 'Pure Android experience with excellent AI capabilities.', imageUrl: '/images/pixel6.jpg' },

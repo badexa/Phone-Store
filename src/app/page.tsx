@@ -84,8 +84,6 @@ const fadeInUpVariant = {
 };
 
 export default function Home() {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-
   return (
     <div className="flex flex-col items-center overflow-hidden bg-gradient-to-b from-gray-50 to-white">
       <div className="w-full">

@@ -3,76 +3,124 @@
 import ImageSlider from './components/ImageSlider';
 import WhatsAppPopup from './components/WhatsAppPopup';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/app/components/ui/button";
 import { Product } from '@/app/store/page';
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
+import { useMediaQuery } from 'react-responsive'; // You'll need to install this package
 
-export default function Home() {
-  // Add this near the top of your component
-  const featuredProducts: Product[] = [
-    {
-      id: 1,
-      name: 'iPhone 13 Pro',
-      description: 'Apple\'s latest flagship with ProMotion display.',
-      imageUrl: '/images/iphone.jpg',
-    },
-    {
-      id: 2,
-      name: 'Samsung Galaxy S21',
-      description: 'Powerful Android device with excellent camera.',
-      imageUrl: '/images/samsung.webp',
-    },
-    {
-      id: 3,
-      name: 'Google Pixel 6',
-      description: 'Pure Android experience with top-notch AI features.',
-      imageUrl: '/images/pixel6.jpg',
-    },
-  ];
+const featuredProducts: Product[] = [
+  {
+    id: 1,
+    name: 'iPhone 13 Pro',
+    description: 'Apple\'s latest flagship with ProMotion display.',
+    imageUrl: '/images/iphone.jpg',
+  },
+  {
+    id: 2,
+    name: 'Samsung Galaxy S21',
+    description: 'Powerful Android device with excellent camera.',
+    imageUrl: '/images/samsung.webp',
+  },
+  {
+    id: 3,
+    name: 'Google Pixel 6',
+    description: 'Pure Android experience with top-notch AI features.',
+    imageUrl: '/images/pixel6.jpg',
+  },
+];
+
+function AnimatedSection({ children, className, delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) {
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isInView = useInView(ref, { 
+    once: true, 
+    amount: isMobile ? 0.1 : 0.2, // Trigger earlier on mobile
+    margin: isMobile ? "0px 0px -50px 0px" : "0px 0px -100px 0px"
+  });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start('visible');
+    }
+  }, [isInView, controls]);
 
   return (
-    <div className="flex flex-col items-center overflow-x-hidden bg-gradient-to-b from-gray-50 to-white">
-      <div className="w-screen">
+    <motion.section
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={{
+        hidden: { opacity: 0, y: isMobile ? 20 : 30 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: isMobile ? 0.3 : 0.4,
+            delay,
+            ease: "easeOut",
+            when: "beforeChildren",
+            staggerChildren: isMobile ? 0.05 : 0.1,
+          },
+        },
+      }}
+      className={className}
+    >
+      {children}
+    </motion.section>
+  );
+}
+
+const fadeInUpVariant = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+};
+
+export default function Home() {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  return (
+    <div className="flex flex-col items-center overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+      <div className="w-full">
         <ImageSlider />
       </div>
 
       {/* Quality Hardware Section */}
-      <section className="w-full text-center py-20 bg-white">
-        <motion.h2
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+      <AnimatedSection className="w-full text-center py-10 md:py-20 bg-white" delay={0.1}>
+        <motion.h2 
+          className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 mb-4 md:mb-8"
+          variants={fadeInUpVariant}
         >
           Quality hardware makes all the difference in a
           <br className="hidden md:inline" />smartphone
         </motion.h2>
-        <motion.div
-          className="mt-8 flex justify-center space-x-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+        <motion.div 
+          className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4"
+          variants={fadeInUpVariant}
         >
           <Button variant="secondary" className="bg-white">Learn More</Button>
           <Link href="/store">
             <Button variant="primary">Shop Now</Button>
           </Link>
         </motion.div>
-      </section>
+      </AnimatedSection>
 
       <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
 
       {/* Discover Section */}
-      <section className="relative w-full py-20 lg:py-40 overflow-hidden">
+      <AnimatedSection className="relative w-full py-20 lg:py-40 overflow-hidden" delay={0.2}>
         <div className="absolute inset-0 bg-gray-100 skew-y-3 transform origin-top-right z-0" />
         <div className="relative z-10 flex flex-col lg:flex-row items-center max-w-7xl mx-auto px-4">
-          <motion.div
+          <motion.div 
             className="relative mb-10 lg:mb-0 lg:mr-8 w-full lg:w-1/2"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={fadeInUpVariant}
           >
             <div className="w-full h-0 pb-[100%] relative">
               <Image
@@ -84,53 +132,55 @@ export default function Home() {
               />
             </div>
           </motion.div>
-          <motion.div
+          <motion.div 
             className="text-left lg:w-1/2"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={fadeInUpVariant}
           >
-            <h3 className="text-3xl font-bold mb-4 text-gray-800">Discover</h3>
-            <p className="text-primary text-4xl lg:text-5xl font-bold mb-6">
+            <motion.h3 className="text-3xl font-bold mb-4 text-gray-800" variants={fadeInUpVariant}>Discover</motion.h3>
+            <motion.p className="text-primary text-4xl lg:text-5xl font-bold mb-6" variants={fadeInUpVariant}>
               Explore Endless Options
-            </p>
-            <p className="text-gray-600 text-xl lg:text-2xl leading-relaxed mb-8">
+            </motion.p>
+            <motion.p className="text-gray-600 text-xl lg:text-2xl leading-relaxed mb-8" variants={fadeInUpVariant}>
               Welcome to a world of limitless possibilities at
               our phone store, where the journey to finding
               your perfect device is just as exciting as using
               it. Every moment spent here is an opportunity
               to discover the latest technology and make
               your mark in the digital landscape!
-            </p>
-            <Link href="/store">
-            <Button size="lg" className="group">
-              Start Exploring
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-            </Link>
+            </motion.p>
+            <motion.div variants={fadeInUpVariant}>
+              <Link href="/store">
+                <Button size="lg" className="group">
+                  Start Exploring
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Featured Products Section */}
-      <section className="w-full py-20 bg-white">
+      <AnimatedSection className="w-full py-10 md:py-20 bg-white" delay={0.3}>
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Featured Products</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.h2 
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 md:mb-12 text-gray-800"
+            variants={fadeInUpVariant}
+          >
+            Featured Products
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {featuredProducts.map((product, index) => (
               <motion.div 
                 key={product.id}
                 className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-full"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                variants={fadeInUpVariant}
+                custom={index}
               >
                 <motion.div 
                   className="relative pt-[75%]"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <Image
                     src={product.imageUrl}
@@ -159,7 +209,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* WhatsApp Popup */}
       <WhatsAppPopup />

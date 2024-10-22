@@ -54,16 +54,16 @@ function AnimatedSection({ children, className, delay = 0 }: { children: React.R
       initial="hidden"
       animate={controls}
       variants={{
-        hidden: { opacity: 0, y: isMobile ? 15 : 20 },
+        hidden: { opacity: 0, y: isMobile ? 20 : 30 },
         visible: {
           opacity: 1,
           y: 0,
           transition: {
-            duration: isMobile ? 0.2 : 0.3,
+            duration: isMobile ? 0.4 : 0.5,
             delay,
             ease: "easeOut",
             when: "beforeChildren",
-            staggerChildren: isMobile ? 0.03 : 0.05,
+            staggerChildren: isMobile ? 0.05 : 0.08,
           },
         },
       }}
@@ -75,11 +75,11 @@ function AnimatedSection({ children, className, delay = 0 }: { children: React.R
 }
 
 const fadeInUpVariant = {
-  hidden: { opacity: 0, y: 15 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.2, ease: "easeOut" },
+    transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
